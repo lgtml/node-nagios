@@ -8,6 +8,21 @@ var opts = {
 };
 var parser = new NagiosParser(opts);
 
-parser.readFile('status', function(err, cb) {
-  console.log(err, cb);
+parser.on('file-ready', function(fileType) {
+  parser.watchFile(fileType, _handleFileEvent, function(err, res) {
+    //RES is the fs.watch obj
+    console.log('WATCH ERR', err);
+  });
 });
+
+function _readFile(fileType) {
+  parser.readFile(fileType, function(err, res) {
+    console.log(res);
+  });
+}
+
+function _handleFileEvent(evt, fileType) {
+  if (evt == "change" || evt == "rename") {
+    _readFile(fileType);
+  }
+}
