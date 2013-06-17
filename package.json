@@ -1,0 +1,23 @@
+{
+  "name": "node-nagios",
+  "description": "A Nagios ASync DAT file parser",
+  "version": "0.0.1",
+  "author": "Leigh Martell - Goinstant, Inc <leigh@goinstant.com>",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:lgtml/node-nagios.git"
+  },
+  "keywords": [
+    "nagios",
+    "monitoring"
+  ],
+  "dependencies": {
+  },
+  "devDependencies": {
+    "mocha": "~1.9.0"
+  },
+  "main": "./lib/parser",
+  "engines": {
+    "node": ">= 0.10.5"
+  }
+}
