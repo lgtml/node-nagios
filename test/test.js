@@ -7,9 +7,11 @@ var opts = {
   }
 };
 var parser = new NagiosParser(opts);
+parser.on('change', _changeHandler);
+parser.on('rename', _changeHandler);
 
 parser.on('file-ready', function(fileType) {
-  parser.watchFile(fileType, _handleFileEvent, function(err, res) {
+  parser.watchFile(fileType, function(err, res) {
     //RES is the fs.watch obj
     console.log('WATCH ERR', err);
   });
@@ -21,8 +23,6 @@ function _readFile(fileType) {
   });
 }
 
-function _handleFileEvent(evt, fileType) {
-  if (evt == "change" || evt == "rename") {
+function _changeHandler(fileType) {
     _readFile(fileType);
-  }
 }
